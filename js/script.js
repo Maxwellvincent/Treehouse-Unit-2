@@ -17,9 +17,9 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 // Grabs the list of all child Li elements under the parent Ul
-const list = document.querySelectorAll('.student-item');
+const showList = document.querySelectorAll('.student-item');
 // Variable for the number of items to show per page
-const pageItems = 10;
+const perPage = 10;
 
 
 /*** 
@@ -38,18 +38,17 @@ const pageItems = 10;
 ***/
 
 function showPage (list, page) {
-   const startIndex = ( page * 10) - 10;
-   console.log(startIndex);
-   const endIndex = page * 10;
-   console.log(endIndex);
-   
-   for (i = 0; i < list.length; i += 1) {
-      if (list[i] >= startIndex && list[i] < endIndex) {
-         document.getElementsByClassName("student-list").innerHTML = list[i];
+   const startIndex = ( page * perPage) - perPage;
+   const endIndex = page * perPage;
+
+   for (let i = 0; i < list.length; i += 1) {
+      if( i >= startIndex && i <= endIndex) {
+         list[i].style.display = "block";
       } 
    }
 }
 
+showPage(showList, 1);
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
