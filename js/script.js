@@ -44,16 +44,37 @@ function showPage (list, page) {
    for (let i = 0; i < list.length; i += 1) {
       if( i >= startIndex && i <= endIndex) {
          list[i].style.display = "block";
-      } 
+      } else {
+         list[i].style.display = "none";
+      }
    }
 }
 
-showPage(showList, 1);
+showPage();
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
+
+function appendPageLinks (list) {
+   // const numOfPages = list.length / perPage;
+   const pagination = document.createElement('DIV');
+
+   pagination.className("pagination");
+   document.querySelector(".page").appendChild(pagination);
+
+   // const uL = document.createElement('ul');
+   // pagination.appendChild(uL);
+
+   // for( let i = 0; i < numOfPages.length; i += 1){
+   //    const listTag = document.createElement('li');
+   //    const anchor = document.createElement('a');
+   //    listTag.innerText = i;
+   // }
+}
+
+appendPageLinks()
 
 
 
