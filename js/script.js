@@ -20,7 +20,7 @@ FSJS project 2 - List Filter and Pagination
 const showList = document.querySelectorAll('.student-item');
 // Variable for the number of items to show per page
 const perPage = 10;
-
+const divPage = document.querySelector(".page");
 
 /*** 
    Create the `showPage` function to hide all of the items in the 
@@ -50,31 +50,33 @@ function showPage (list, page) {
    }
 }
 
-showPage();
+
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
 
+
 function appendPageLinks (list) {
-   // const numOfPages = list.length / perPage;
-   const pagination = document.createElement('DIV');
+const numPages = list.length / perPage;
+const div = document.createElement('DIV');
+div.setAttribute("class","pagination");
+div.innerHTML = `
+<ul>
+   <li> <a class"active" href="#">1</a> </li>  
+   <li> <a href="#">2</a> </li>
+   <li> <a href="#">3</a> </li>
+   <li> <a href="#">4</a> </li>
 
-   pagination.className("pagination");
-   document.querySelector(".page").appendChild(pagination);
-
-   // const uL = document.createElement('ul');
-   // pagination.appendChild(uL);
-
-   // for( let i = 0; i < numOfPages.length; i += 1){
-   //    const listTag = document.createElement('li');
-   //    const anchor = document.createElement('a');
-   //    listTag.innerText = i;
-   // }
+</ul>
+`
+divPage.appendChild(div);S
 }
 
-appendPageLinks()
+
+showPage(showList,2);
+appendPageLinks(showList)
 
 
 
