@@ -39,7 +39,7 @@ const divPage = document.querySelector(".page");
 
 function showPage (list, page) {
    const startIndex = ( page * perPage) - perPage;
-   const endIndex = page * perPage;
+   const endIndex = page * perPage - 1;
 
    for (let i = 0; i < list.length; i += 1) {
       if( i >= startIndex && i <= endIndex) {
@@ -57,26 +57,72 @@ function showPage (list, page) {
    functionality to the pagination buttons.
 ***/
 
-
 function appendPageLinks (list) {
-const numPages = list.length / perPage;
-const div = document.createElement('DIV');
-div.setAttribute("class","pagination");
-div.innerHTML = `
-<ul>
-   <li> <a class"active" href="#">1</a> </li>  
-   <li> <a href="#">2</a> </li>
-   <li> <a href="#">3</a> </li>
-   <li> <a href="#">4</a> </li>
+   const totalPages = Math.ceil(list.length/ perPage);
+   const div = document.createElement("DIV");
+   const uL = document.createElement("UL");
+   // const listAnchor = uL.innerHTML = "<li><a class='active' href='#'>" + + "</a></li>";
+   div.setAttribute("class","pagination");
+   div.appendChild(uL);
+   divPage.appendChild(div);
 
-</ul>
-`
-divPage.appendChild(div);S
+   for (var i = 1; i <= totalPages; i += 1) {
+      div.innerHTML += "<li><a class= 'active' href='#'>"+ i +"</a></li>";
+   }
+
 }
+appendPageLinks(showList);
 
 
-showPage(showList,2);
-appendPageLinks(showList)
+
+
+
+
+// function appendPageLinks (list) {
+//    const numPages = Math.ceil(list.length / perPage);
+//    const div = document.createElement('DIV');
+//    div.setAttribute("class","pagination");
+//    divPage.appendChild(div);
+//    const unorderedList = document.createElement("UL");
+//    div.appendChild(unorderedList);
+//    const listItem = document.createElement("LI");
+//    const anchor = document.createElement("A");
+
+//    for (let i = 0; i < numPages.length; i += 1) {
+//       anchor.textContent = i;
+//       anchor.setAttribute("href", "#");
+//       listItem.appendChild(anchor);
+//       div.appendChild(listItem);
+//       divPage.appendChild(div);
+//    }
+
+//    const allAnchor = document.querySelectorAll("a");
+//    // document.querySelectorAll("a")[0].setAttribute("class","active");
+
+
+//    for (let i = 0; i < allAnchor.length; i += 1) {
+//       allAnchor[i].addEventListener("click", (e) => {
+
+//       })
+//    }
+
+
+
+// div.innerHTML = `
+// <ul>
+//    <li> <a class"active" href="#">1</a> </li>  
+//    <li> <a href="#">2</a> </li>
+//    <li> <a href="#">3</a> </li>
+//    <li> <a href="#">4</a> </li>
+
+// </ul>
+// `
+// divPage.appendChild(div);
+// }
+
+
+showPage(showList,1);
+// appendPageLinks(showList)
 
 
 
