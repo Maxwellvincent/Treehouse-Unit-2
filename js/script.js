@@ -12,6 +12,8 @@ FSJS project 2 - List Filter and Pagination
 // Variable for the number of items to show per page
    const perPage = 10;
    const divPage = document.querySelector(".page");
+   const divPageHeader = document.querySelector(".page-header");
+   const mainList = document.querySelector(".student-list");
 
 // Function that creates a list of items to be shown on the page
 
@@ -79,3 +81,52 @@ FSJS project 2 - List Filter and Pagination
    }
    showPage(showList,1);
    appendPageLinks(showList);
+
+
+   // Create a Div element, append input and button elements to that div, add specific Ids to the seach and submit elements.
+const searchDiv = document.createElement("DIV");
+const searchBar = document.createElement("input");
+const submitButton = document.createElement("button");
+searchDiv.className = "student-search";
+searchBar.setAttribute("placeholder","Search for students...");
+searchBar.setAttribute("id", "search-input");
+submitButton.setAttribute("id", "submit");
+submitButton.textContent = "Sumbit";
+searchDiv.appendChild(searchBar);
+searchDiv.appendChild(submitButton);
+divPageHeader.appendChild(searchDiv);
+
+const userSearch = document.querySelector("#search-input");
+const userSubmit = document.querySelector("#submit");
+
+function studentFilter (userInput, search) {
+   var li, listText, i, txtValue;
+   var filter = userSearch.value.toLowerCase();
+   console.log(filter);
+   //  grabbing all li within the Ul of mainList
+    li = mainList.getElementsByTagName("li");
+   console.log(li);
+   // looping through all of the li elements
+    for ( var i = 0; i < li.length; i += 1){
+      //  grabbing the innertext of each list item and setting it equal to itemText
+      listText = li[i].firstElementChild.getElementsByTagName("h3")[0];
+      txtValue = listText.textContent || listText.innerText;
+      console.log(txtValue);
+      if(txtValue.toLowerCase().indexOf(filter) != -1){
+         li[i].style.display = "";
+      } else {
+         li[i].style.display = "none";
+      }
+    }
+}
+
+// Click events for keyup on search bar
+userSearch.addEventListener("keyup", (e) => {
+   studentFilter(e.target.value, showList);
+
+})
+// Click event for sumbit on search bad
+userSubmit.addEventListener("submit", (e) => {
+   studentFilter(e.target.value, showList);
+})
+
